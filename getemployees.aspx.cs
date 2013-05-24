@@ -10,19 +10,10 @@ public partial class getemployees : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Write("{\"employees\": [");
-       
-        System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection();
         string connectionstring = System.Configuration.ConfigurationManager.ConnectionStrings["HuberGoDaddy"].ConnectionString;
-        conn.ConnectionString = connectionstring;
-        string sql = "select employeeid, firstname, lastname from huber_employees";
-        System.Data.DataSet ds = new System.Data.DataSet();
-        conn.Open();
-        System.Data.SqlClient.SqlCommand comm = new System.Data.SqlClient.SqlCommand(sql, conn);
-
-        System.Data.SqlClient.SqlDataAdapter da = new System.Data.SqlClient.SqlDataAdapter();
-        da.SelectCommand = comm;
-
-        da.Fill(ds);
+        DataAccess da = new DataAccess();
+        System.Data.DataSet ds = da.getDataSet(connectionstring,
+            "select employeeid, firstname, lastname from huber_employees");
 
         //if there are no employees returned
         if (ds.Tables.Count <= 0 || ds.Tables[0].Rows.Count <= 0)
