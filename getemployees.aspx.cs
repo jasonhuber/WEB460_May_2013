@@ -32,11 +32,11 @@ public partial class getemployees : System.Web.UI.Page
         else
         {
             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
+            {   
                 Response.Write("{\"employeeid\": \"" + 
                     ds.Tables[0].Rows[i].ItemArray[0].ToString() + 
                     "\",\"firstname\":" + 
-                    ds.Tables[0].Rows[i].ItemArray[1].ToString() + "\"}");
+                    "\"" + ds.Tables[0].Rows[i].ItemArray[1].ToString() + "\"}");
                 
                 if (i<ds.Tables[0].Rows.Count-1)
                 {
