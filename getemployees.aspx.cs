@@ -10,7 +10,8 @@ public partial class getemployees : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Write("{\"employees\": [");
-        string connectionstring = System.Configuration.ConfigurationManager.ConnectionStrings["HuberGoDaddy"].ConnectionString;
+        string connectionstring = 
+            System.Configuration.ConfigurationManager.ConnectionStrings["HuberGoDaddy"].ConnectionString;
         DataAccess da = new DataAccess();
         System.Data.DataSet ds = da.getDataSet(connectionstring,
             "select employeeid, firstname, lastname from huber_employees");

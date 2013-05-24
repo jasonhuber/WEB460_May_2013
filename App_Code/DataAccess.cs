@@ -31,4 +31,18 @@ public class DataAccess
 
         return ds;
     }
+
+    public int Delete(string connectionstring, string sqlstatement)
+    {
+        //sample sqlstatement "delete * from users where username = 'Jason'"
+        System.Data.SqlClient.SqlConnection conn =
+            new System.Data.SqlClient.SqlConnection();
+        conn.ConnectionString = connectionstring;
+        System.Data.DataSet ds = new System.Data.DataSet();
+        conn.Open();
+        System.Data.SqlClient.SqlCommand comm =
+            new System.Data.SqlClient.SqlCommand(sqlstatement, conn);
+        
+        return comm.ExecuteNonQuery();
+    }
 }
